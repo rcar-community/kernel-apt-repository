@@ -1,5 +1,5 @@
-name: Generate apt repository for kernel deb
-run-name: Generate apt repository for kernel deb
+name: DEV Generate apt repository for kernel deb
+run-name: DEV Generate apt repository for kernel deb
 on:
   push:
     branches:
