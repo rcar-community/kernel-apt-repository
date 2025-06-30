@@ -15,7 +15,7 @@ DESKTOP_PKG=""
 #DESKTOP_PKG="lxqt"
 
 GH_REPO="rcar-community/kernel-apt-repository"
-REPO_BRANCH=apt-repo
+REPO_BRANCH=apt-repo-dev
 EXTRA_APT_REPO="\
 deb [arch=arm64 trusted=yes signed-by=/etc/apt/trusted.gpg.d/kernel-repo.asc] https://raw.githubusercontent.com/${GH_REPO}/${REPO_BRANCH} bookworm main \
 "
