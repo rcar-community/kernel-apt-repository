@@ -1,0 +1,324 @@
+Package: kernel-6.12.41-yocto-standard-gab10cfb70b0b-dirty
+Version: 6.12.41+git0+efdc47a81d-r0
+Priority: optional
+Section: kernel
+Filename: pool/main/k/kernel-6.12.41-yocto-standard-gab10cfb70b0b-dirty/kernel-6.12.41-yocto-standard-gab10cfb70b0b-dirty_6.12.41+git0+efdc47a81d-r0_arm64.deb
+Size: 32860
+SHA256: 3011e7705b5e8bea491c39ca408692eb1da2f284a658704216614470fab06505
+SHA1: 212bbc596432d54301aa4cce65c077e727dc2976
+MD5sum: 77b8929251aa98d8e6f030a3e3eb69ba
+Description: Linux kernel
+ Linux kernel for the R-Car board
+Maintainer: Poky Maintainers <poky@lists.yoctoproject.org>
+Architecture: arm64
+OE: linux-renesas
+PackageArch: sparrow-hawk
+Homepage: https://www.yoctoproject.org/
+Recommends: kernel-image-6.12.41-yocto-standard-gab10cfb70b0b-dirty (= 6.12.41+git0+efdc47a81d-r0)
+Provides: kernel-6.12.41-yocto-standard-gab10cfb70b0b-dirty, kernel-base
+
+Package: kernel-dbg
+Version: 6.12.41+git0+efdc47a81d-r0
+Priority: optional
+Section: kernel
+Filename: pool/main/k/kernel-dbg/kernel-dbg_6.12.41+git0+efdc47a81d-r0_arm64.deb
+Size: 964060
+SHA256: fde047ce98dde4f6860af5e680f7c9335cba7253c3ac6b80c72a3d77659f54fd
+SHA1: 341da4d5e18f3d8408bf5e3cb8bd0146dae29227
+MD5sum: 46027813e71521311851c134a90ed5a8
+Description: Linux kernel
+ Linux kernel for the R-Car board
+Maintainer: Poky Maintainers <poky@lists.yoctoproject.org>
+Architecture: arm64
+OE: linux-renesas
+PackageArch: sparrow-hawk
+Homepage: https://www.yoctoproject.org/
+
+Package: kernel-dev
+Version: 6.12.41+git0+efdc47a81d-r0
+Priority: optional
+Section: kernel
+Filename: pool/main/k/kernel-dev/kernel-dev_6.12.41+git0+efdc47a81d-r0_arm64.deb
+Size: 686376
+SHA256: f7c6bca0371317661d534ba4eebeb784660a53d6017d35783e8dc86c3b194e77
+SHA1: 63af858c3f3f5cedf6a779de8f65403d079b9751
+MD5sum: c160cd1967c77fd8bdb75c680c6588da
+Description: Linux kernel
+ Linux kernel for the R-Car board
+Maintainer: Poky Maintainers <poky@lists.yoctoproject.org>
+Architecture: arm64
+OE: linux-renesas
+PackageArch: sparrow-hawk
+Homepage: https://www.yoctoproject.org/
+Recommends: kernel-6.12.41-yocto-standard-gab10cfb70b0b-dirty-dev, kernel-base-dev, kernel-image-image-dev, kernel-module-efivarfs-6.12.41-yocto-standard-gab10cfb70b0b-dirty-dev, kernel-module-pcie-rcar-gen4-6.12.41-yocto-standard-gab10cfb70b0b-dirty-dev, kernel-module-xen-gntalloc-6.12.41-yocto-standard-gab10cfb70b0b-dirty-dev, kernel-module-xen-gntdev-6.12.41-yocto-standard-gab10cfb70b0b-dirty-dev, libgcc-dev
+
+Package: kernel-devicetree
+Version: 6.12.41+git0+efdc47a81d-r0
+Priority: optional
+Section: kernel
+Filename: pool/main/k/kernel-devicetree/kernel-devicetree_6.12.41+git0+efdc47a81d-r0_arm64.deb
+Size: 10832
+SHA256: 66e0eedc7781c3c3b8be610874592affcf48721f8d205e7f33f00975f31d2c90
+SHA1: 5c1942081040cff70e35b610f8703ea15c863277
+MD5sum: ef40e79b3be4ea3797222878255524fc
+Description: Linux kernel
+ Linux kernel for the R-Car board
+Maintainer: Poky Maintainers <poky@lists.yoctoproject.org>
+Architecture: arm64
+OE: linux-renesas
+PackageArch: sparrow-hawk
+Homepage: https://www.yoctoproject.org/
+
+Package: kernel-image-6.12.41-yocto-standard-gab10cfb70b0b-dirty
+Version: 6.12.41+git0+efdc47a81d-r0
+Priority: optional
+Section: kernel
+Filename: pool/main/k/kernel-image-6.12.41-yocto-standard-gab10cfb70b0b-dirty/kernel-image-6.12.41-yocto-standard-gab10cfb70b0b-dirty_6.12.41+git0+efdc47a81d-r0_arm64.deb
+Size: 836
+SHA256: eea40ce66b87a197efa48109d78a7bc4461286663189077d21684c15e0ef6177
+SHA1: c37f52ba56c378bea4c12db65ac211c2fa6d905c
+MD5sum: 7ecea3332e8db0da3d558c1c7af08f30
+Description: Linux kernel
+ Linux kernel for the R-Car board
+Maintainer: Poky Maintainers <poky@lists.yoctoproject.org>
+Architecture: arm64
+OE: linux-renesas
+PackageArch: sparrow-hawk
+Homepage: https://www.yoctoproject.org/
+Depends: kernel-image-image-6.12.41-yocto-standard-gab10cfb70b0b-dirty (= 6.12.41+git0+efdc47a81d-r0)
+Provides: kernel-image
+
+Package: kernel-image-image-6.12.41-yocto-standard-gab10cfb70b0b-dirty
+Version: 6.12.41+git0+efdc47a81d-r0
+Priority: optional
+Section: kernel
+Filename: pool/main/k/kernel-image-image-6.12.41-yocto-standard-gab10cfb70b0b-dirty/kernel-image-image-6.12.41-yocto-standard-gab10cfb70b0b-dirty_6.12.41+git0+efdc47a81d-r0_arm64.deb
+Size: 6841192
+SHA256: fea6932bbae98bcd6d5807bc7955183ff22518cfc63f4a39cdcb870ffc268dee
+SHA1: 6acd17348877c1f7200f20e4ef20dd2cca0891fe
+MD5sum: 3387e2de3fb99e6304703b1fb39959aa
+Description: Linux kernel
+ Linux kernel for the R-Car board
+Maintainer: Poky Maintainers <poky@lists.yoctoproject.org>
+Architecture: arm64
+OE: linux-renesas
+PackageArch: sparrow-hawk
+Homepage: https://www.yoctoproject.org/
+Provides: kernel-image-image
+
+Package: kernel-module-efivarfs-6.12.41-yocto-standard-gab10cfb70b0b-dirty
+Version: 6.12.41+git0+efdc47a81d-r0
+Priority: optional
+Section: kernel
+Filename: pool/main/k/kernel-module-efivarfs-6.12.41-yocto-standard-gab10cfb70b0b-dirty/kernel-module-efivarfs-6.12.41-yocto-standard-gab10cfb70b0b-dirty_6.12.41+git0+efdc47a81d-r0_arm64.deb
+Size: 8296
+SHA256: bd13afa2e36ef7889b1e91b34b8d61f54c169fd41b455c82b231b38317e13600
+SHA1: 49a25c23a064bccbe32de9f79b2908939c110ffd
+MD5sum: 79ff6fcd315efeefa99552a7aa8a3be7
+Description: efivarfs kernel module
+ efivarfs kernel module; EFI Variable Filesystem
+Maintainer: Poky Maintainers <poky@lists.yoctoproject.org>
+Architecture: arm64
+OE: linux-renesas
+PackageArch: sparrow-hawk
+Homepage: https://www.yoctoproject.org/
+Depends: kernel-6.12.41-yocto-standard-gab10cfb70b0b-dirty
+Provides: kernel-module-efivarfs
+
+Package: kernel-module-pcie-rcar-gen4-6.12.41-yocto-standard-gab10cfb70b0b-dirty
+Version: 6.12.41+git0+efdc47a81d-r0
+Priority: optional
+Section: kernel
+Filename: pool/main/k/kernel-module-pcie-rcar-gen4-6.12.41-yocto-standard-gab10cfb70b0b-dirty/kernel-module-pcie-rcar-gen4-6.12.41-yocto-standard-gab10cfb70b0b-dirty_6.12.41+git0+efdc47a81d-r0_arm64.deb
+Size: 5480
+SHA256: 5a94242b651ad650f83c5bb8e60fa74495a23a66f19be8cc66c8da05f741474f
+SHA1: d2fb9c46866779e03fd099a63f77b8ac2d268c76
+MD5sum: 779738d7eb463a249e31228d9e45f75d
+Description: pcie-rcar-gen4 kernel module
+ pcie-rcar-gen4 kernel module; Renesas R-Car Gen4 PCIe controller driver
+Maintainer: Poky Maintainers <poky@lists.yoctoproject.org>
+Architecture: arm64
+OE: linux-renesas
+PackageArch: sparrow-hawk
+Homepage: https://www.yoctoproject.org/
+Depends: kernel-6.12.41-yocto-standard-gab10cfb70b0b-dirty
+Provides: kernel-module-pcie-rcar-gen4
+
+Package: kernel-module-qos
+Version: 1.0-r0
+Priority: optional
+Section: base
+Filename: pool/main/k/kernel-module-qos/kernel-module-qos_1.0-r0_arm64.deb
+Size: 5800
+SHA256: 57b0e7456e4e96caf805d6631cfc71b33740d2d0bcac672b16d883e9dd044ace
+SHA1: 9adeaa6a15da6aa18975783e7d747bb2e0877841
+MD5sum: 6eeb301f6b6a168d2817d4c624f76e98
+Description: qos kernel module
+ qos kernel module
+Maintainer: Poky Maintainers <poky@lists.yoctoproject.org>
+Architecture: arm64
+OE: kernel-module-qos
+PackageArch: sparrow-hawk
+Depends: kernel-6.12.41-yocto-standard-gab10cfb70b0b-dirty
+Provides: kernel-module-qos
+
+Package: kernel-module-qos-dbg
+Version: 1.0-r0
+Priority: optional
+Section: devel
+Filename: pool/main/k/kernel-module-qos-dbg/kernel-module-qos-dbg_1.0-r0_arm64.deb
+Size: 3428
+SHA256: 2d88114bf5704a2cda8fc593e2824eb0773e981caae8081e636890af58b85bb8
+SHA1: ec8d369a6f75bd6f603936baf470f93ba6d102a1
+MD5sum: 7c0a2a93e7f314e78143dc30bfeb3b90
+Description: kernel-module-qos version 1.0-r0 - Debugging files
+ QoS driver for the R-Car  This package contains ELF symbols and related
+ sources for debugging purposes.
+Maintainer: Poky Maintainers <poky@lists.yoctoproject.org>
+Architecture: arm64
+OE: kernel-module-qos
+PackageArch: sparrow-hawk
+
+Package: kernel-module-qos-dev
+Version: 1.0-r0
+Priority: optional
+Section: devel
+Filename: pool/main/k/kernel-module-qos-dev/kernel-module-qos-dev_1.0-r0_arm64.deb
+Size: 2680
+SHA256: b17bd7eaffacb9809ab0b8aca3ebf8a3e9ab77dc27ab15b26a303580d1c0e148
+SHA1: 4b953744615ac6e7629399b7ca2358e2926a079f
+MD5sum: a63e03b5791567b28d035497b2f78c4a
+Description: kernel-module-qos version 1.0-r0 - Development files
+ QoS driver for the R-Car  This package contains symbolic links, header
+ files, and related items necessary for software development.
+Maintainer: Poky Maintainers <poky@lists.yoctoproject.org>
+Architecture: arm64
+OE: kernel-module-qos
+PackageArch: sparrow-hawk
+Recommends: kernel-6.12.41-yocto-standard-gab10cfb70b0b-dirty-dev, kernel-module-qos (= 1.0-r0), linux-renesas-dev
+
+Package: kernel-module-xen-gntalloc-6.12.41-yocto-standard-gab10cfb70b0b-dirty
+Version: 6.12.41+git0+efdc47a81d-r0
+Priority: optional
+Section: kernel
+Filename: pool/main/k/kernel-module-xen-gntalloc-6.12.41-yocto-standard-gab10cfb70b0b-dirty/kernel-module-xen-gntalloc-6.12.41-yocto-standard-gab10cfb70b0b-dirty_6.12.41+git0+efdc47a81d-r0_arm64.deb
+Size: 5200
+SHA256: 6cc90b2456b2275cacbfdf8c822cf622874aeb870d0792a8f179a1088ad9dd9d
+SHA1: 656e42454de3037497c47d67229a0184e40b54d7
+MD5sum: 51a4913437e352104c616189a176f8ac
+Description: xen-gntalloc kernel module
+ xen-gntalloc kernel module; User-space grant reference allocator driver
+Maintainer: Poky Maintainers <poky@lists.yoctoproject.org>
+Architecture: arm64
+OE: linux-renesas
+PackageArch: sparrow-hawk
+Homepage: https://www.yoctoproject.org/
+Depends: kernel-6.12.41-yocto-standard-gab10cfb70b0b-dirty
+Provides: kernel-module-xen-gntalloc
+
+Package: kernel-module-xen-gntdev-6.12.41-yocto-standard-gab10cfb70b0b-dirty
+Version: 6.12.41+git0+efdc47a81d-r0
+Priority: optional
+Section: kernel
+Filename: pool/main/k/kernel-module-xen-gntdev-6.12.41-yocto-standard-gab10cfb70b0b-dirty/kernel-module-xen-gntdev-6.12.41-yocto-standard-gab10cfb70b0b-dirty_6.12.41+git0+efdc47a81d-r0_arm64.deb
+Size: 8532
+SHA256: 585616b8ddf263c539d04b190899cef313ad6092c4fda8f9c2809a6f8a703db8
+SHA1: 7a5431cf7c2c659b8bef24dee84241c99cf966dc
+MD5sum: a9e84323401cbfd893c1b7d858c4b588
+Description: xen-gntdev kernel module
+ xen-gntdev kernel module; User-space granted page access driver
+Maintainer: Poky Maintainers <poky@lists.yoctoproject.org>
+Architecture: arm64
+OE: linux-renesas
+PackageArch: sparrow-hawk
+Homepage: https://www.yoctoproject.org/
+Depends: kernel-6.12.41-yocto-standard-gab10cfb70b0b-dirty
+Provides: kernel-module-xen-gntdev
+
+Package: kernel-modules
+Version: 6.12.41+git0+efdc47a81d-r0
+Priority: optional
+Section: kernel
+Filename: pool/main/k/kernel-modules/kernel-modules_6.12.41+git0+efdc47a81d-r0_arm64.deb
+Size: 856
+SHA256: 94250d65c1fb3a1eec04a7e602509f4f14087a230b1139d1aa2bcb69632e518a
+SHA1: 2429d10c976600efa00c52af3dacbaed441b0663
+MD5sum: d38ca0d4117f70c80aa80d5661c79b54
+Description: Linux kernel
+ Kernel modules meta package
+Maintainer: Poky Maintainers <poky@lists.yoctoproject.org>
+Architecture: arm64
+OE: linux-renesas
+PackageArch: sparrow-hawk
+Homepage: https://www.yoctoproject.org/
+Depends: kernel-module-efivarfs-6.12.41-yocto-standard-gab10cfb70b0b-dirty, kernel-module-pcie-rcar-gen4-6.12.41-yocto-standard-gab10cfb70b0b-dirty, kernel-module-xen-gntalloc-6.12.41-yocto-standard-gab10cfb70b0b-dirty, kernel-module-xen-gntdev-6.12.41-yocto-standard-gab10cfb70b0b-dirty
+
+Package: kernel-vmlinux
+Version: 6.12.41+git0+efdc47a81d-r0
+Priority: optional
+Section: kernel
+Filename: pool/main/k/kernel-vmlinux/kernel-vmlinux_6.12.41+git0+efdc47a81d-r0_arm64.deb
+Size: 6842880
+SHA256: c0a7e4e5626356c4c3294df54f584c8fab3d8f16541b8a2efc4652988d060a43
+SHA1: 469210241ab91c9880344b20e67ccf115991d574
+MD5sum: c701dfaa46caf44b105c509a7e5c2239
+Description: Linux kernel
+ Linux kernel for the R-Car board
+Maintainer: Poky Maintainers <poky@lists.yoctoproject.org>
+Architecture: arm64
+OE: linux-renesas
+PackageArch: sparrow-hawk
+Homepage: https://www.yoctoproject.org/
+
+Package: linux-fitimage
+Version: 1.0-r0
+Priority: optional
+Section: base
+Filename: pool/main/l/linux-fitimage/linux-fitimage_1.0-r0_arm64.deb
+Size: 6865216
+SHA256: f20a7a0667e27526d96cd67dfcbd1cc987f7793733baaafaebb87f7fc50cbc3c
+SHA1: c41be04bfa856a8725175e57adb3c158740e8738
+MD5sum: f27dff8b2baf8a0d90c7b2fa6e58a72f
+Description: linux-fitimage version 1.0-r0
+ Custom FIT image with BL31, DTB, and Kernel
+Maintainer: Poky Maintainers <poky@lists.yoctoproject.org>
+Architecture: arm64
+OE: linux-fitimage
+PackageArch: sparrow-hawk
+
+Package: linux-fitimage-dbg
+Version: 1.0-r0
+Priority: optional
+Section: devel
+Filename: pool/main/l/linux-fitimage-dbg/linux-fitimage-dbg_1.0-r0_arm64.deb
+Size: 828
+SHA256: 6fe42c01d31e2eab351d36dde47dba2344977682a17c94e32b61d68d27b45963
+SHA1: dddf23b0484404bce8d63b6e9c29b25cb1c842a9
+MD5sum: f3210a746ad44a7f9f1022b058f8b8c9
+Description: linux-fitimage version 1.0-r0 - Debugging files
+ Custom FIT image with BL31, DTB, and Kernel  This package contains ELF
+ symbols and related sources for debugging purposes.
+Maintainer: Poky Maintainers <poky@lists.yoctoproject.org>
+Architecture: arm64
+OE: linux-fitimage
+PackageArch: sparrow-hawk
+
+Package: linux-fitimage-dev
+Version: 1.0-r0
+Priority: optional
+Section: devel
+Filename: pool/main/l/linux-fitimage-dev/linux-fitimage-dev_1.0-r0_arm64.deb
+Size: 888
+SHA256: b9ed67bbe2f1d1f87ddff83a6c8b3ea64f6c170b6a2411954573d4c74f0f07fa
+SHA1: 0c751ce77c6cfb57c1cf13edb84298715e6eac8e
+MD5sum: 5558a7d06019d5a449f80799d3b6072a
+Description: linux-fitimage version 1.0-r0 - Development files
+ Custom FIT image with BL31, DTB, and Kernel  This package contains
+ symbolic links, header files, and related items necessary for software
+ development.
+Maintainer: Poky Maintainers <poky@lists.yoctoproject.org>
+Architecture: arm64
+OE: linux-fitimage
+PackageArch: sparrow-hawk
+Recommends: arm-trusted-firmware-dev, linux-fitimage (= 1.0-r0), linux-renesas-dev
+

@@ -1,0 +1,38 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Origin: Debian
+Label: Debian
+Suite: stable
+Codename: bookworm
+Version: 12
+Date: Thu, 07 Aug 2025 10:17:08 UTC
+Architectures: arm64
+Components: main
+Description: Kernel package apt repostiroy for sparrow-hawk
+MD5Sum:
+ 3f4b46fc8e2db4bccdaed20b391bbc0e 13471 main/binary-arm64/Packages
+ b1a2c9423c0c36ba04a6e95fbdb59bcc 2960 main/binary-arm64/Packages.gz
+ 0d8fd8392ac0d6aaa79f10f61d5514f4 153 main/binary-arm64/Release
+SHA1:
+ 9ab5bd2d86140a4215f1ebec4ec1d417b5d4cc40 13471 main/binary-arm64/Packages
+ 472660339e93c6573f9cd34e80f8d23d55b6696e 2960 main/binary-arm64/Packages.gz
+ 1c5a32e8578478f654f5dc9410b4a8522fd7308a 153 main/binary-arm64/Release
+SHA256:
+ eccbe87041a78675f2bc97121e744601f4231048b86111a82a7c4bb0c2d4b3ef 13471 main/binary-arm64/Packages
+ 4c889566858265cc11cbd26b9946073ba176af9be1967a6d9257b57784bdde51 2960 main/binary-arm64/Packages.gz
+ a998cf488fa047db9ce5823d0b7372881d272ab3bf5cfa905994b91b50cb938c 153 main/binary-arm64/Release
+-----BEGIN PGP SIGNATURE-----
+
+iQGzBAEBCgAdFiEECbeB2gTo6eNBunTYv0NaWF1OGQQFAmiUfSQACgkQv0NaWF1O
+GQTUCwv+M7cm2Fpb5kw7U6Hi8RpD/M0l+0ZScNQAPHIGv/MUQ0h1ESvBdY7DjcIi
+us5tGlP8bzwwo/xSbq71JMismYleNKQW+A0QM3pU8mT9u/gDfV/x/ehip7Dr/33Z
+evpipPWfX6Veu6ckb2Pklq6bOYSHKUj9cy9dtBsD7Wgem1l0GsoouuAoo/1S9D/f
+oXoLIpZZ8rMvqDssT4E+gL8ofVumX+Ve8hTMnJHQ/krl2hXl7ih592Vqj+7KxDCb
+7MRFOB1yHAFvCTcC8G1yalCixr6oFQChCMOVa0JwjaXetcJFa8f1Wwmt8T8Y1q3X
+08nCxTwbp2FTue6eLAQDYELnSfd2Tsf/9YkPA/Iwe74Iff+/B1FGTOWWFIVRM/Vm
++T/TvSGaXtl0jJZFCVzKNMtmIOoiK9Ren0IAy8M1v1dnn4pW3VB/l7Ww3+FomGzG
+j9mXFsa7ID03OkKiY6YiK0Jg2Es6wjLcEonqf5V4HGmoKt0cNSGwiFJZDKcQLwGO
+jbUlHcGu
+=oKfr
+-----END PGP SIGNATURE-----
