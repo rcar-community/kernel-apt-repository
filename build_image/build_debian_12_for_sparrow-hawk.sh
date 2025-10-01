@@ -30,9 +30,6 @@ SCRIPT_DIR=$(cd `dirname $0` && pwd)
 CHROOT_DIR=${SCRIPT_DIR}/rootfs
 
 NET_DEV=eth0
-if [[ "$DEVICE" == "s4sk" ]]; then
-    NET_DEV=tsn0
-fi
 if [[ "$DEVICE" == "sparrow-hawk" ]]; then
     NET_DEV=end0
 fi
