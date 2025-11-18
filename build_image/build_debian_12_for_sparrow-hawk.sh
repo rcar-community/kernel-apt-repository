@@ -8,6 +8,7 @@ IMAGE_NAME=${DEVICE}-debian-based-bsp.img
 HOSTNAME=${DEVICE}
 USERNAME=rcar # Default password is same as USERNAME
 EXTRA_IMAGE_SIZE=1000 # MiB
+ADDITIONAL_PACKAGE=""
 
 # For X11 with Gnome/LXQt
 DESKTOP_PKG=""
@@ -46,7 +47,26 @@ vim net-tools ssh tzdata rsyslog udev wget \
 unzip curl kmod git python3-pip nano \
 systemd-resolved systemd-timesyncd \
 ${DESKTOP_PKG} \
+${ADDITIONAL_PACKAGE} \
 "
+
+USE_LOCAL_DEB="no"
+Usage () {
+    echo "Usage:"
+    echo "    $0 <options>"
+    echo "options:"
+    echo "    -h | --help:          Show this help"
+    echo "    -l | --use-local-deb: Use local deb package instead of kernel-apt -epo(For development)"
+    exit
+}
+for arg in $@; do
+    if [[ "$arg" == "-l" || "$arg" == "--use-local-deb" ]]; then
+        USE_LOCAL_DEB="yes"
+    elif [[ "$arg" == "-h" || "$arg" == "--help" ]]; then
+        Usage; exit;
+    fi
+done
+
 # root privilege is needed for this script
 if [ "`whoami`" != "root" ]; then
     echo "Error: Root privilege is needed. Try again with sudo or root user."
@@ -59,6 +79,10 @@ echo "Download gpg key for debian repository to Host PC"
 
 echo "Run mmdebstrap to make initial rootfs"
 rm -rf ${CHROOT_DIR}
+INSTALL_KERNEL_PACKAGE="apt-get install -y kernel-* linux-fitimage"
+if [[ "${USE_LOCAL_DEB}" == "yes" ]]; then
+    INSTALL_KERNEL_PACKAGE="dpkg -i ./local_deb/*.deb || apt-get -y -f install"
+fi
 mmdebstrap --variant=$VARIANT --arch=$ARCH \
     --include="ca-certificates ${PKG_LIST}" $CODENAME ${CHROOT_DIR} \
     \
@@ -79,7 +103,8 @@ mmdebstrap --variant=$VARIANT --arch=$ARCH \
     --customize-hook="echo nameserver 1.1.1.1 >  ${CHROOT_DIR}/etc/resolv.conf" \
     --customize-hook="echo nameserver 8.8.8.8 >> ${CHROOT_DIR}/etc/resolv.conf" \
     --customize-hook="chroot ${CHROOT_DIR} apt-get update" \
-    --customize-hook="chroot ${CHROOT_DIR} apt-get install -y kernel-* linux-fitimage" \
+    --customize-hook="cp -rf ${SCRIPT_DIR}/local_deb -t ${CHROOT_DIR}" \
+    --customize-hook="chroot ${CHROOT_DIR} ${INSTALL_KERNEL_PACKAGE}" \
     --customize-hook="chroot ${CHROOT_DIR} depmod -a \$(ls ${CHROOT_DIR}/lib/modules)" \
     --customize-hook="chroot ${CHROOT_DIR} apt-get clean" \
     --customize-hook="chroot ${CHROOT_DIR} rm /etc/resolv.conf" \
@@ -88,6 +113,7 @@ mmdebstrap --variant=$VARIANT --arch=$ARCH \
     --customize-hook="chroot ${CHROOT_DIR} ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf" \
     || true
 
+rm -rf ${CHROOT_DIR}/local_deb
 echo "Make flashable image from rootfs"
 USED_SIZE=$(du --max-depth=1 ${CHROOT_DIR} | tail -1 | awk '{print int($1/1000)}')
 IMAGE_SIZE=$(( $USED_SIZE + $EXTRA_IMAGE_SIZE ))
