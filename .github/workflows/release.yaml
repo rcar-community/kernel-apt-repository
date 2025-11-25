@@ -72,7 +72,8 @@ jobs:
 
       - name: Build debian image
         run: |
-          ./build_image/build_with_docker_sparrow-hawk.sh
+          ./build_image/build_with_docker_sparrow-hawk.sh 12
+          ./build_image/build_with_docker_sparrow-hawk.sh 13
 
       - name: Generate release message
         run: |
