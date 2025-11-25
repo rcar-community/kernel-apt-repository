@@ -3,37 +3,33 @@
 #################################
 # Configuable parameter         #
 #################################
-DEVICE=sparrow-hawk # Currently, it doesn't support to change device.
-IMAGE_NAME=${DEVICE}-debian-based-bsp.img
-HOSTNAME=${DEVICE}
+HOSTNAME=sparrow-hawk
 USERNAME=rcar # Default password is same as USERNAME
 EXTRA_IMAGE_SIZE=1000 # MiB
 ADDITIONAL_PACKAGE=""
+VARIANT=debootstrap # minbase # default=debootstrap
 
 # For X11 with Gnome/LXQt
 DESKTOP_PKG=""
 #DESKTOP_PKG="gnome"
 #DESKTOP_PKG="lxqt"
 
+#################################
+# Fixed parameter               #
+#################################
+DEVICE=sparrow-hawk # Currently, it doesn't support to change device.
 GH_REPO="rcar-community/kernel-apt-repository"
 REPO_BRANCH=apt-repo
 EXTRA_APT_REPO="\
-deb [arch=arm64 trusted=yes signed-by=/etc/apt/trusted.gpg.d/kernel-repo.asc] https://raw.githubusercontent.com/${GH_REPO}/${REPO_BRANCH} bookworm main \
+deb [arch=arm64 trusted=yes signed-by=/etc/apt/trusted.gpg.d/kernel-repo.asc] https://raw.githubusercontent.com/${GH_REPO}/${REPO_BRANCH} kernel main \
 "
 GPG_KEY_URL=https://github.com/${GH_REPO}/raw/refs/heads/${REPO_BRANCH}/kernel-repo.asc
-
-CODENAME=bookworm
-DEBIAN_VER=12 # どちらかからもう片方を取得する仕組みのほうが良いか？
-VARIANT=debootstrap # minbase # default=debootstrap
 ARCH=arm64
-
 SCRIPT_DIR=$(cd `dirname $0` && pwd)
 CHROOT_DIR=${SCRIPT_DIR}/rootfs
+NET_DEV=end0
+USE_LOCAL_DEB="no"
 
-NET_DEV=eth0
-if [[ "$DEVICE" == "sparrow-hawk" ]]; then
-    NET_DEV=end0
-fi
 DHCP_CONF="
 [Match]
 Name=${NET_DEV}
@@ -44,21 +40,47 @@ PKG_LIST="
 systemd dbus net-tools iproute2 pciutils usbutils \
 sudo passwd login adduser tzdata locales alsa-utils \
 vim net-tools ssh tzdata rsyslog udev wget \
-unzip curl kmod git python3-pip nano \
-systemd-resolved systemd-timesyncd \
+unzip curl kmod git nano systemd-resolved systemd-timesyncd \
 ${DESKTOP_PKG} \
 ${ADDITIONAL_PACKAGE} \
 "
 
-USE_LOCAL_DEB="no"
+#################################
+# Function                      #
+#################################
 Usage () {
     echo "Usage:"
-    echo "    $0 <options>"
-    echo "options:"
+    echo "    $0 <DEBIAN_VERSION> [OPTIONS]"
+    echo "DEBIAN_VERSION: Only major version(ex. 12)"
+    echo "OPTIONS:"
     echo "    -h | --help:          Show this help"
     echo "    -l | --use-local-deb: Use local deb package instead of kernel-apt -epo(For development)"
     exit
 }
+
+Get_codename_from_version () {
+    VERSION=$1
+    curl -s https://debian.pages.debian.net/distro-info-data/debian.csv \
+        | grep ^${VERSION}, | cut -d',' -f3
+}
+
+#################################
+# Main process                  #
+#################################
+
+if [[ $# < 1 ]]; then
+    Usage; exit -1
+fi
+
+# Check version and codename
+DEBIAN_VER=$1
+CODENAME=$( Get_codename_from_version ${DEBIAN_VER} )
+IMAGE_NAME=${DEVICE}-debian-${DEBIAN_VER}-based-bsp.img
+if [[ $CODENAME == "" ]]; then
+    Usage; exit -1
+fi
+echo $CODENAME
+
 for arg in $@; do
     if [[ "$arg" == "-l" || "$arg" == "--use-local-deb" ]]; then
         USE_LOCAL_DEB="yes"
