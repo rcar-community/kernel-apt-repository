@@ -68,12 +68,8 @@ Get_codename_from_version () {
 # Main process                  #
 #################################
 
-if [[ $# < 1 ]]; then
-    Usage; exit -1
-fi
-
 # Check version and codename
-DEBIAN_VER=$1
+DEBIAN_VER=${1:-12}
 CODENAME=$( Get_codename_from_version ${DEBIAN_VER} )
 IMAGE_NAME=${DEVICE}-debian-${DEBIAN_VER}-based-bsp.img
 if [[ $CODENAME == "" ]]; then
