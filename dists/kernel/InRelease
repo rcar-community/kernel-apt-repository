@@ -1,0 +1,37 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Origin: Debian
+Label: Debian
+Suite: stable
+Codename: kernel
+Date: Tue, 16 Dec 2025 11:52:08 UTC
+Architectures: arm64
+Components: main
+Description: Kernel package apt repository for sparrow-hawk
+MD5Sum:
+ f37660e4f98f30a97914d8d3db50eba3 15538 main/binary-arm64/Packages
+ 293fb8a3726113b99e8ec597f3f9b0f2 3392 main/binary-arm64/Packages.gz
+ 2c20742e729f6d66681e46a8a4ad1807 141 main/binary-arm64/Release
+SHA1:
+ 50bb24ab1d7f45d42d0b9e1e0ccfb003e9926eef 15538 main/binary-arm64/Packages
+ 6b9c6412f33277d4d56f6052d5793d790729490f 3392 main/binary-arm64/Packages.gz
+ 9dc69c02878de04e757eb8c5608ffda9dfae1ecf 141 main/binary-arm64/Release
+SHA256:
+ 3f8d2b856f4b21e314b25b485e65055b75ec4fde5cade94ee3bb725bf1cdbc2a 15538 main/binary-arm64/Packages
+ 4c8cce5c525a1c0c37090edc6564325110e76533b0d44fe60bf630e560abb336 3392 main/binary-arm64/Packages.gz
+ bec6aee8fd6b589bbdf35301132b5a4f672ca7470de9e6f323c2422d4bf4e7ca 141 main/binary-arm64/Release
+-----BEGIN PGP SIGNATURE-----
+
+iQGzBAEBCgAdFiEECbeB2gTo6eNBunTYv0NaWF1OGQQFAmlBR+gACgkQv0NaWF1O
+GQSW+wv+KNOZoindekzCj3p29W//FCrbLCB9F7jJy1hhDlj/waSoDttXKzQvR1N7
+12KP/GEKZD3cSgCFkxwNZrHuZlcHUFX0M7RQU27hvOvL+3BuAvP+SkkDXvVZAdRn
+MM+4VUDDYjP53tEju5yURf7D4E5fm2LFLpmxrU+yQHuf9i46adDq9LbkCfqyqPZy
+aIktoy3GCn2XPDo+ix/h3gUSeqBmCumDz0HV3/9JPQflvt6q6N0SwsJCaFNQhkyx
+nBrK8mvbRvyG1Dej8aBohlAbQLJq3KoQ3lOUYdWwY3+v/qaLhbKtY/zRw9VJlgUg
+6dn3oqvU0nl0AUmvg6xU5q+qGzNEmpKy6ab8zPL0CutWw8Jfdhkj6pIQDrGdkQLS
+0JOlZE7QHmrg0d5LskC+V9As3CisosgKsuDwLsHtscpaF4Lei7WJmYeM5oSdHEZn
+t4SWH+kbKhJgZAShNufrqzTnnecERXCoXcmAvTUq3Q10VRkzapvyQSWjgjruVcZQ
+A50jK3+2
+=4Jr2
+-----END PGP SIGNATURE-----
