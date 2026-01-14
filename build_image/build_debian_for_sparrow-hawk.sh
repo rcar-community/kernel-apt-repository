@@ -22,7 +22,7 @@ source setup_yocto_bsp_variables.sh
 
 DEVICE=sparrow-hawk # Currently, it doesn't support to change device.
 GH_REPO="rcar-community/kernel-apt-repository"
-REPO_BRANCH=apt-repo-dev
+REPO_BRANCH=apt-repo-next
 EXTRA_APT_REPO="\
 deb [arch=arm64 trusted=yes signed-by=/etc/apt/trusted.gpg.d/kernel-repo.asc] https://raw.githubusercontent.com/${GH_REPO}/${REPO_BRANCH} kernel main \
 "
