@@ -5,6 +5,7 @@ on:
     branches:
       - 'main'
       - 'dev'
+      - 'next'
   workflow_dispatch:
 
 jobs:
@@ -60,14 +61,17 @@ jobs:
 
       - name: Commit and Push branch
         run: |
-          BRANCH=apt-repo
+          APT_BRANCH=apt-repo
+          if [[ "$BRANCH" != "main" ]]; then
+            APT_BRANCH=apt-repo-${BRANCH}
+          fi
           cd repo
           git init
           git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git checkout -b $BRANCH
+          git checkout -b ${APT_BRANCH}
           git add .
           git commit -m "Update APT repo"
-          git push --force origin $BRANCH
+          git push --force origin ${APT_BRANCH}
           cd $GITHUB_WORKSPACE
 
       - name: Build debian image
@@ -119,6 +123,8 @@ jobs:
             echo "TAG_NAME=v$(date +'%Y-%m-%d')" >> $GITHUB_ENV
           elif [[ "$BRANCH" == "dev" ]]; then
             echo "TAG_NAME=dev-latest" >> $GITHUB_ENV
+          elif [[ "$BRANCH" == "next" ]]; then
+            echo "TAG_NAME=next-release" >> $GITHUB_ENV
           fi
 
       - name: Setup release configuration
@@ -128,6 +134,9 @@ jobs:
           if [[ "${GITHUB_REF_NAME}" == "dev" ]]; then
             echo "PRERELEASE=true" >> $GITHUB_ENV
             echo "RELEASE_TITLE=Development Latest" >> $GITHUB_ENV
+          elif [[ "${GITHUB_REF_NAME}" == "next" ]]; then
+            echo "PRERELEASE=true" >> $GITHUB_ENV
+            echo "RELEASE_TITLE=Next release candidate" >> $GITHUB_ENV
           else
             echo "PRERELEASE=false" >> $GITHUB_ENV
             echo "RELEASE_TITLE=Release ${{ env.TAG_NAME }}" >> $GITHUB_ENV
