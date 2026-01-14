@@ -36,13 +36,22 @@ Name=${NET_DEV}
 [Network]
 DHCP=ipv4
 "
-PKG_LIST="
-systemd dbus net-tools iproute2 pciutils usbutils \
-sudo passwd login adduser tzdata locales alsa-utils \
-vim net-tools ssh tzdata rsyslog udev wget \
-unzip curl kmod git nano systemd-resolved systemd-timesyncd \
-${DESKTOP_PKG} \
-${ADDITIONAL_PACKAGE} \
+BASE_PKG=" \
+    systemd dbus net-tools iproute2 \
+    sudo passwd login adduser tzdata locales \
+    vim net-tools ssh tzdata rsyslog udev wget \
+    kmod nano systemd-resolved systemd-timesyncd \
+"
+UTIL_PKG=" \
+    pciutils usbutils alsa-utils i2c-tools can-utils psmisc \
+    unzip curl git htop \
+    python3 python3-pip python3-venv python3-dev python3-libgpiod \
+"
+PKG_LIST=" \
+    ${BASE_PKG} \
+    ${UTIL_PKG} \
+    ${DESKTOP_PKG} \
+    ${ADDITIONAL_PACKAGE} \
 "
 
 #################################
