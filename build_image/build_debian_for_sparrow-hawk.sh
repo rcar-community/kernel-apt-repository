@@ -44,7 +44,7 @@ BASE_PKG=" \
 "
 UTIL_PKG=" \
     pciutils usbutils alsa-utils i2c-tools can-utils psmisc \
-    unzip curl git htop \
+    unzip curl git htop parted \
     python3 python3-pip python3-venv python3-dev python3-libgpiod \
 "
 PKG_LIST=" \
@@ -121,7 +121,8 @@ mmdebstrap --variant=$VARIANT --arch=$ARCH \
     --customize-hook="echo '/sbin/insmod /lib/modules/\$(uname -r)/kernel/drivers/pci/controller/dwc/pcie-rcar-gen4.ko & ' >> ${CHROOT_DIR}/etc/rc.local" \
     --customize-hook="echo 'exit 0' >> ${CHROOT_DIR}/etc/rc.local" \
     --customize-hook="chroot ${CHROOT_DIR} chmod +x /etc/rc.local" \
-    --customize-hook="chroot ${CHROOT_DIR} useradd -m -s /bin/bash -G sudo ${USERNAME}" \
+    --customize-hook="chroot ${CHROOT_DIR} addgroup gpio" \
+    --customize-hook="chroot ${CHROOT_DIR} useradd -m -s /bin/bash -G sudo,audio,video,i2c,gpio,dialout ${USERNAME}" \
     --customize-hook="chroot ${CHROOT_DIR} sh -c 'echo ${USERNAME}:${USERNAME} | chpasswd'" \
     --customize-hook="echo \"${USERNAME}   ALL=(ALL) NOPASSWD:ALL\" >> ${CHROOT_DIR}/etc/sudoers" \
     --customize-hook="curl -fsSL ${GPG_KEY_URL} -o ${CHROOT_DIR}/etc/apt/trusted.gpg.d/kernel-repo.asc" \
@@ -138,9 +139,32 @@ mmdebstrap --variant=$VARIANT --arch=$ARCH \
     --customize-hook="chroot ${CHROOT_DIR} systemctl enable systemd-networkd" \
     --customize-hook="chroot ${CHROOT_DIR} systemctl enable systemd-resolved" \
     --customize-hook="chroot ${CHROOT_DIR} ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf" \
-    || true
+    || false
 
 rm -rf ${CHROOT_DIR}/local_deb
+# Other setup
+## Remount rootfs
+echo '/dev/root  /  auto  defaults  1  1' >> ${CHROOT_DIR}/etc/fstab
+## GPIO udev rule
+echo 'SUBSYSTEM=="gpio", MODE="0660", GROUP="gpio"' > ${CHROOT_DIR}/etc/udev/rules.d/50-gpio.rules
+## I2C application symlinl
+for path in $(cd ${CHROOT_DIR} && ls usr/sbin/i2c* ); do ln -sf /${path} ${CHROOT_DIR}/usr/bin/; done
+## PCIe Firmware
+FW_BIN=https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/rcar_gen4_pcie.bin
+FW_LIC=https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/LICENCE.r8a779g_pcie_phy
+mkdir -p ${CHROOT_DIR}/usr/lib/firmware && cd ${CHROOT_DIR}/usr/lib/firmware
+for url in $FW_BIN $FW_LIC; do wget ${url}; done
+cd ${SCRIPT_DIR}
+## install uitl script from meta-sparrow-hawk
+wget https://github.com/rcar-community/meta-sparrow-hawk/raw/refs/heads/scarthgap/recipes-utils/expand-rootfs/files/expand-rootfs.sh \
+    -O ${CHROOT_DIR}/usr/bin/expand-rootfs.sh
+chmod +x ${CHROOT_DIR}/usr/bin/expand-rootfs.sh
+## Install example-apps from meta-sparrow-hawk
+mkdir -p ${SCRIPT_DIR}/example-apps && cd ${SCRIPT_DIR}/example-apps
+wget https://raw.githubusercontent.com/rcar-community/meta-sparrow-hawk/refs/heads/scarthgap/recipes-examples/example-apps/files/toggle_gpio_GP2_12.py
+cp -rf $SCRIPT_DIR/example-apps -t ${CHROOT_DIR}/usr/bin/
+cd $SCRIPT_DIR && rm -rf ${SCRIPT_DIR}/example-apps
+
 echo "Make flashable image from rootfs"
 USED_SIZE=$(du --max-depth=1 ${CHROOT_DIR} | tail -1 | awk '{print int($1/1000)}')
 IMAGE_SIZE=$(( $USED_SIZE + $EXTRA_IMAGE_SIZE ))
