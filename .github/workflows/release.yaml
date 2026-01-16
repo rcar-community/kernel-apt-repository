@@ -98,16 +98,10 @@ jobs:
 
           The default user is "rcar" and password is same as username.
 
-          ### How to use PCIe/USB.
-          Please copy correct firmware into /usr/lib/firmware/, then reboot.
-
-          **Note:**
-          There is no support/help to get the firmware.
-          Please do it at your own risk.
-
           ### Source/License
 
           kernel: Please check "kernel_deb_package.zip"
+          PCIeFW: https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/LICENCE.r8a779g_pcie_phy
           others: Please check deb-src by using apt. Debian default packages are used in this image.
 
           EOS
