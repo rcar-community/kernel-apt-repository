@@ -60,7 +60,7 @@ PKG_LIST=" \
 Usage () {
     echo "Usage:"
     echo "    $0 <DEBIAN_VERSION> [OPTIONS]"
-    echo "DEBIAN_VERSION: Only major version(ex. 12)"
+    echo "DEBIAN_VERSION: Only major version(ex. 13)"
     echo "OPTIONS:"
     echo "    -h | --help:          Show this help"
     echo "    -l | --use-local-deb: Use local deb package instead of kernel-apt -epo(For development)"
@@ -78,7 +78,7 @@ Get_codename_from_version () {
 #################################
 
 # Check version and codename
-DEBIAN_VER=${1:-12}
+DEBIAN_VER=${1:-13}
 CODENAME=$( Get_codename_from_version ${DEBIAN_VER} )
 IMAGE_NAME=${DEVICE}-debian-${DEBIAN_VER}-based-bsp.img
 if [[ $CODENAME == "" ]]; then
