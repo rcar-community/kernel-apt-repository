@@ -134,6 +134,10 @@ mmdebstrap --variant=$VARIANT --arch=$ARCH \
     --customize-hook="cp -rf ${SCRIPT_DIR}/local_deb -t ${CHROOT_DIR}" \
     --customize-hook="chroot ${CHROOT_DIR} ${INSTALL_KERNEL_PACKAGE}" \
     --customize-hook="chroot ${CHROOT_DIR} depmod -a \$(ls ${CHROOT_DIR}/lib/modules)" \
+    \
+    --customize-hook="cp ${SCRIPT_DIR}/helper_script/build_libcamera.sh -t ${CHROOT_DIR}" \
+    --customize-hook="chroot ${CHROOT_DIR} bash build_libcamera.sh" \
+    \
     --customize-hook="chroot ${CHROOT_DIR} apt-get clean" \
     --customize-hook="chroot ${CHROOT_DIR} rm /etc/resolv.conf" \
     --customize-hook="chroot ${CHROOT_DIR} systemctl enable systemd-networkd" \
