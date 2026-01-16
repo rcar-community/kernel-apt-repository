@@ -61,7 +61,8 @@ jobs:
 
       - name: Commit and Push branch
         run: |
-          APT_BRANCH=apt-repo
+          BRANCH="${{ github.ref_name }}"
+          APT_BRANCH="apt-repo"
           if [[ "$BRANCH" != "main" ]]; then
             APT_BRANCH=apt-repo-${BRANCH}
           fi
@@ -81,6 +82,7 @@ jobs:
 
       - name: Generate release message
         run: |
+          BRANCH="${{ github.ref_name }}"
           OUTPUT="${{ github.workspace }}-release_msg.txt"
           if [[ "$BRANCH" == "dev" ]]; then
             echo '## Note: This is the latest development build.' > ${OUTPUT}
@@ -125,10 +127,11 @@ jobs:
         id: prerelease
         shell: bash
         run: |
-          if [[ "${GITHUB_REF_NAME}" == "dev" ]]; then
+          BRANCH="${{ github.ref_name }}"
+          if [[ "${BRANCH}" == "dev" ]]; then
             echo "PRERELEASE=true" >> $GITHUB_ENV
             echo "RELEASE_TITLE=Development Latest" >> $GITHUB_ENV
-          elif [[ "${GITHUB_REF_NAME}" == "next" ]]; then
+          elif [[ "${BRANCH}" == "next" ]]; then
             echo "PRERELEASE=true" >> $GITHUB_ENV
             echo "RELEASE_TITLE=Next release candidate" >> $GITHUB_ENV
           else
