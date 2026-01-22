@@ -63,7 +63,7 @@ Usage () {
     echo "DEBIAN_VERSION: Only major version(ex. 13)"
     echo "OPTIONS:"
     echo "    -h | --help:          Show this help"
-    echo "    -l | --use-local-deb: Use local deb package instead of kernel-apt -epo(For development)"
+    echo "    -l | --use-local-deb: Use local deb package instead of kernel-apt-repo(For development)"
     exit
 }
 
