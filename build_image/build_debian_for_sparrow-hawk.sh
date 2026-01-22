@@ -17,6 +17,9 @@ DESKTOP_PKG=""
 #################################
 # Fixed parameter               #
 #################################
+# load common variables
+source setup_yocto_bsp_variables.sh
+
 DEVICE=sparrow-hawk # Currently, it doesn't support to change device.
 GH_REPO="rcar-community/kernel-apt-repository"
 REPO_BRANCH=apt-repo-dev
@@ -136,6 +139,7 @@ mmdebstrap --variant=$VARIANT --arch=$ARCH \
     --customize-hook="chroot ${CHROOT_DIR} depmod -a \$(ls ${CHROOT_DIR}/lib/modules)" \
     \
     --customize-hook="cp ${SCRIPT_DIR}/helper_script/build_libcamera.sh -t ${CHROOT_DIR}" \
+    --customize-hook="cp ${SCRIPT_DIR}/setup_yocto_bsp_variables.sh -t ${CHROOT_DIR}" \
     --customize-hook="chroot ${CHROOT_DIR} bash build_libcamera.sh" \
     \
     --customize-hook="chroot ${CHROOT_DIR} apt-get clean" \
@@ -160,12 +164,12 @@ mkdir -p ${CHROOT_DIR}/usr/lib/firmware && cd ${CHROOT_DIR}/usr/lib/firmware
 for url in $FW_BIN $FW_LIC; do wget ${url}; done
 cd ${SCRIPT_DIR}
 ## install uitl script from meta-sparrow-hawk
-wget https://github.com/rcar-community/meta-sparrow-hawk/raw/refs/heads/scarthgap/recipes-utils/expand-rootfs/files/expand-rootfs.sh \
+wget ${YOCTO_BSP_RAW_GITHUB_URL}/recipes-utils/expand-rootfs/files/expand-rootfs.sh \
     -O ${CHROOT_DIR}/usr/bin/expand-rootfs.sh
 chmod +x ${CHROOT_DIR}/usr/bin/expand-rootfs.sh
 ## Install example-apps from meta-sparrow-hawk
 mkdir -p ${SCRIPT_DIR}/example-apps && cd ${SCRIPT_DIR}/example-apps
-wget https://raw.githubusercontent.com/rcar-community/meta-sparrow-hawk/refs/heads/scarthgap/recipes-examples/example-apps/files/toggle_gpio_GP2_12.py
+wget ${YOCTO_BSP_RAW_GITHUB_URL}/recipes-examples/example-apps/files/toggle_gpio_GP2_12.py
 cp -rf $SCRIPT_DIR/example-apps -t ${CHROOT_DIR}/usr/bin/
 cd $SCRIPT_DIR && rm -rf ${SCRIPT_DIR}/example-apps
 
