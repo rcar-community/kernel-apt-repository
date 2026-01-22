@@ -1,10 +1,11 @@
 #!/bin/bash
 
-REPO_URL="https://github.com/rcar-community/meta-sparrow-hawk"
-BRANCH="scarthgap-dev"
+# Load common variable
+source ./setup_yocto_bsp_variables.sh
+
 # Get information from libcamera recipe in meta-sparrow-hawk
 RECIPE_FILENAME="libcamera_git.bb"
-RECIPE_URL="${REPO_URL}/raw/refs/heads/${BRANCH}/recipes-multimedia/libcamera/${RECIPE_FILENAME}"
+RECIPE_URL="${YOCTO_BSP_RAW_GITHUB_URL}/recipes-multimedia/libcamera/${RECIPE_FILENAME}"
 wget ${RECIPE_URL}
 PATCH_LIST="$(cat ${RECIPE_FILENAME} | grep '.patch ' | sed -e 's|.*file://||' -e 's/\ .*$//')"
 SRCREV="$(cat ${RECIPE_FILENAME} | grep SRCREV | cut -d'"' -f2 )"
@@ -19,7 +20,7 @@ git clone https://git.libcamera.org/libcamera/libcamera.git
 cd libcamera
 git checkout -B work ${SRCREV}
 for patch in ${PATCH_LIST}; do
-    wget ${REPO_URL}/raw/refs/heads/${BRANCH}/recipes-multimedia/libcamera/files/${patch}
+    wget ${YOCTO_BSP_RAW_GITHUB_URL}/recipes-multimedia/libcamera/files/${patch}
 done
 
 if [[ "$(git config --list | grep user)" == "" ]]; then
