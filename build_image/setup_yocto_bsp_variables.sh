@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REFERENCE=scarthgap-next
+REFERENCE=v2026-01-30
 RAW_GITHUB_BASE_URL=https://raw.githubusercontent.com/rcar-community/meta-sparrow-hawk/refs
 # Check tag(vYYYY-MM-DD) or branch
 if [[ "$(echo ${REFERENCE} | grep -E 'v[0-9]{4}-[0-9]{2}-[0-9]{2}')" == "" ]]; then
