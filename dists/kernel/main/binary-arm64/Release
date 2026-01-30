@@ -1,0 +1,6 @@
+Archive: stable
+Component: main
+Origin: Debian
+Label: Debian
+Architecture: arm64
+Description: Kernel package apt repository for sparrow-hawk
