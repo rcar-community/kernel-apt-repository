@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REFERENCE=v2026-01-30
+REFERENCE=v2026-02-03
 RAW_GITHUB_BASE_URL=https://raw.githubusercontent.com/rcar-community/meta-sparrow-hawk/refs
 RELEASE_GITHUB_BASE_URL=https://github.com/rcar-community/meta-sparrow-hawk/releases/download/
 # Check tag(vYYYY-MM-DD) or branch
