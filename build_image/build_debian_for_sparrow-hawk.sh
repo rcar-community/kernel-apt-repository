@@ -172,6 +172,12 @@ mkdir -p ${SCRIPT_DIR}/example-apps && cd ${SCRIPT_DIR}/example-apps
 wget ${YOCTO_BSP_RAW_GITHUB_URL}/recipes-examples/example-apps/files/toggle_gpio_GP2_12.py
 cp -rf $SCRIPT_DIR/example-apps -t ${CHROOT_DIR}/usr/bin/
 cd $SCRIPT_DIR && rm -rf ${SCRIPT_DIR}/example-apps
+## Install Bootloader binary from meta-sparrow-hawk release
+mkdir -p ${SCRIPT_DIR}/temp && cd ${SCRIPT_DIR}/temp
+wget ${YOCTO_BSP_RELEASE_GITHUB_URL}/ipl-burning.zip
+unzip -qo ipl-burning.zip
+cp -rf ipl-burning/flash.bin -t ${CHROOT_DIR}/
+cd $SCRIPT_DIR && rm -rf ${SCRIPT_DIR}/temp
 
 echo "Make flashable image from rootfs"
 USED_SIZE=$(du --max-depth=1 ${CHROOT_DIR} | tail -1 | awk '{print int($1/1000)}')
