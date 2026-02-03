@@ -2,6 +2,7 @@
 
 REFERENCE=v2026-01-30
 RAW_GITHUB_BASE_URL=https://raw.githubusercontent.com/rcar-community/meta-sparrow-hawk/refs
+RELEASE_GITHUB_BASE_URL=https://github.com/rcar-community/meta-sparrow-hawk/releases/download/
 # Check tag(vYYYY-MM-DD) or branch
 if [[ "$(echo ${REFERENCE} | grep -E 'v[0-9]{4}-[0-9]{2}-[0-9]{2}')" == "" ]]; then
     YOCTO_BSP_RAW_GITHUB_URL=${RAW_GITHUB_BASE_URL}/heads/${REFERENCE}
@@ -9,4 +10,13 @@ else
     YOCTO_BSP_RAW_GITHUB_URL=${RAW_GITHUB_BASE_URL}/tags/${REFERENCE}
 fi
 unset RAW_GITHUB_BASE_URL
+
+if [[ "${REFERENCE}" == "*-dev" ]]; then
+    YOCTO_BSP_RELEASE_GITHUB_URL=${RELEASE_GITHUB_BASE_URL}/dev-latest
+elif [[ "${REFERENCE}" == "-next" ]]; then
+    YOCTO_BSP_RELEASE_GITHUB_URL=${RELEASE_GITHUB_BASE_URL}/next-release
+else
+    YOCTO_BSP_RELEASE_GITHUB_URL=${RELEASE_GITHUB_BASE_URL}/${REFERENCE}
+fi
+unset RELEASE_GITHUB_BASE_URL
 
