@@ -11,13 +11,13 @@ apt repository for debian based distribution
 ```
 # You need to prepare docker envrionment on your Host PC
 ./build_image/build_with_docker_sparrow-hawk.sh <DEBIAN_VERSION>
-ex.) ./build_image/build_with_docker_sparrow-hawk.sh 12
+ex.) ./build_image/build_with_docker_sparrow-hawk.sh
 ```
 or
 ```
 # Note: Build requirements can be confirmed from build_image/Dockerfile.
 sudo ./build_image/build_debian_for_sparrow-hawk.sh <DEBIAN_VERSION>
-ex.) sudo ./build_image/build_debian_for_sparrow-hawk.sh 12
+ex.) sudo ./build_image/build_debian_for_sparrow-hawk.sh
 ```
 
 
