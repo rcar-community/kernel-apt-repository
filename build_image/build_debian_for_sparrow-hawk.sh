@@ -17,8 +17,9 @@ DESKTOP_PKG=""
 #################################
 # Fixed parameter               #
 #################################
+SCRIPT_DIR=$(cd `dirname $0` && pwd)
 # load common variables
-source setup_yocto_bsp_variables.sh
+source ${SCRIPT_DIR}/setup_yocto_bsp_variables.sh
 
 DEVICE=sparrow-hawk # Currently, it doesn't support to change device.
 GH_REPO="rcar-community/kernel-apt-repository"
@@ -28,7 +29,6 @@ deb [arch=arm64 trusted=yes signed-by=/etc/apt/trusted.gpg.d/kernel-repo.asc] ht
 "
 GPG_KEY_URL=https://github.com/${GH_REPO}/raw/refs/heads/${REPO_BRANCH}/kernel-repo.asc
 ARCH=arm64
-SCRIPT_DIR=$(cd `dirname $0` && pwd)
 CHROOT_DIR=${SCRIPT_DIR}/rootfs
 NET_DEV=end0
 USE_LOCAL_DEB="no"
