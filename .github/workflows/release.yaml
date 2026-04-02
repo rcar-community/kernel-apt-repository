@@ -78,6 +78,8 @@ jobs:
       - name: Build debian image
         run: |
           ./build_image/build_with_docker_sparrow-hawk.sh 13
+          ./build_image/build_with_docker_sparrow-hawk.sh 13 --lxqt
+          ./build_image/build_with_docker_sparrow-hawk.sh 13 --gnome
 
       - name: Generate release message
         run: |
