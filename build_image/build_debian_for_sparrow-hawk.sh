@@ -9,11 +9,6 @@ EXTRA_IMAGE_SIZE=1000 # MiB
 ADDITIONAL_PACKAGE=""
 VARIANT=debootstrap # minbase # default=debootstrap
 
-# For X11 with Gnome/LXQt
-DESKTOP_PKG=""
-#DESKTOP_PKG="gnome"
-#DESKTOP_PKG="lxqt"
-
 #################################
 # Fixed parameter               #
 #################################
@@ -32,6 +27,7 @@ ARCH=arm64
 CHROOT_DIR=${SCRIPT_DIR}/rootfs
 NET_DEV=end0
 USE_LOCAL_DEB="no"
+IMAGE_NAME_POSTFIX=""
 
 DHCP_CONF="
 [Match]
@@ -53,7 +49,6 @@ UTIL_PKG=" \
 PKG_LIST=" \
     ${BASE_PKG} \
     ${UTIL_PKG} \
-    ${DESKTOP_PKG} \
     ${ADDITIONAL_PACKAGE} \
 "
 
@@ -67,6 +62,8 @@ Usage () {
     echo "OPTIONS:"
     echo "    -h | --help:          Show this help"
     echo "    -l | --use-local-deb: Use local deb package instead of kernel-apt-repo(For development)"
+    echo "       | --lxqt:          Enable lxqt desktop envrionment"
+    echo "       | --gnome:         Enable Gnome desktop envrionment"
     exit
 }
 
@@ -83,7 +80,6 @@ Get_codename_from_version () {
 # Check version and codename
 DEBIAN_VER=${1:-13}
 CODENAME=$( Get_codename_from_version ${DEBIAN_VER} )
-IMAGE_NAME=${DEVICE}-debian-${DEBIAN_VER}-based-bsp.img
 if [[ $CODENAME == "" ]]; then
     Usage; exit -1
 fi
@@ -92,10 +88,17 @@ echo $CODENAME
 for arg in $@; do
     if [[ "$arg" == "-l" || "$arg" == "--use-local-deb" ]]; then
         USE_LOCAL_DEB="yes"
+    elif [[ "$arg" == "--gnome" ]]; then
+        PKG_LIST+=" gnome "
+        IMAGE_NAME_POSTFIX="-gnome"
+    elif [[ "$arg" == "--lxqt" ]]; then
+        PKG_LIST+=" lxqt sddm breeze-icon-theme "
+        IMAGE_NAME_POSTFIX="-lxqt"
     elif [[ "$arg" == "-h" || "$arg" == "--help" ]]; then
         Usage; exit;
     fi
 done
+IMAGE_NAME=${DEVICE}-debian-${DEBIAN_VER}-based-bsp${IMAGE_NAME_POSTFIX}.img
 
 # root privilege is needed for this script
 if [ "`whoami`" != "root" ]; then
