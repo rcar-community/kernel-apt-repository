@@ -62,8 +62,7 @@ Usage () {
     echo "OPTIONS:"
     echo "    -h | --help:          Show this help"
     echo "    -l | --use-local-deb: Use local deb package instead of kernel-apt-repo(For development)"
-    echo "       | --lxqt:          Enable lxqt desktop envrionment"
-    echo "       | --gnome:         Enable Gnome desktop envrionment"
+    echo "       | --desktop <pkg>: Add task-<pkg>-desktop package into image"
     exit
 }
 
