@@ -28,6 +28,7 @@ CHROOT_DIR=${SCRIPT_DIR}/rootfs
 NET_DEV=end0
 USE_LOCAL_DEB="no"
 IMAGE_NAME_POSTFIX=""
+DEBIAN_VER=13
 
 DHCP_CONF="
 [Match]
@@ -63,6 +64,7 @@ Usage () {
     echo "    -h | --help:          Show this help"
     echo "    -l | --use-local-deb: Use local deb package instead of kernel-apt-repo(For development)"
     echo "       | --desktop <pkg>: Add task-<pkg>-desktop package into image"
+    echo "       | --version <num>: Set target debian version(ex.13)"
     exit
 }
 
@@ -77,15 +79,11 @@ Get_codename_from_version () {
 #################################
 
 # Check version and codename
-DEBIAN_VER=${1:-13}
-CODENAME=$( Get_codename_from_version ${DEBIAN_VER} )
-if [[ $CODENAME == "" ]]; then
-    Usage; exit -1
-fi
-echo $CODENAME
-
 while [[ $# -gt 0 ]]; do
     case "$1" in
+        --version)
+            DEBIAN_VER=$2
+            shift ;;
         --desktop)
             DESKTOP_ENV=$2
             PKG_LIST+=" task-${DESKTOP_ENV}-desktop "
@@ -99,6 +97,12 @@ while [[ $# -gt 0 ]]; do
     esac
     shift
 done
+CODENAME=$( Get_codename_from_version ${DEBIAN_VER} )
+if [[ $CODENAME == "" ]]; then
+    Usage; exit -1
+fi
+echo $CODENAME
+
 IMAGE_NAME=${DEVICE}-debian-${DEBIAN_VER}-based-bsp${IMAGE_NAME_POSTFIX}.img
 
 # root privilege is needed for this script
