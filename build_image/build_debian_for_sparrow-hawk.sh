@@ -85,18 +85,20 @@ if [[ $CODENAME == "" ]]; then
 fi
 echo $CODENAME
 
-for arg in $@; do
-    if [[ "$arg" == "-l" || "$arg" == "--use-local-deb" ]]; then
-        USE_LOCAL_DEB="yes"
-    elif [[ "$arg" == "--gnome" ]]; then
-        PKG_LIST+=" gnome "
-        IMAGE_NAME_POSTFIX="-gnome"
-    elif [[ "$arg" == "--lxqt" ]]; then
-        PKG_LIST+=" lxqt sddm breeze-icon-theme "
-        IMAGE_NAME_POSTFIX="-lxqt"
-    elif [[ "$arg" == "-h" || "$arg" == "--help" ]]; then
-        Usage; exit;
-    fi
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --desktop)
+            DESKTOP_ENV=$2
+            PKG_LIST+=" task-${DESKTOP_ENV}-desktop "
+            IMAGE_NAME_POSTFIX="-${DESKTOP_ENV}"
+            shift ;;
+        -l|--use-local-deb)
+            USE_LOCAL_DEB="yes" ;;
+        -h|--help)
+            Usage; exit 0 ;;
+        *) ;; # Ignore unknown option
+    esac
+    shift
 done
 IMAGE_NAME=${DEVICE}-debian-${DEBIAN_VER}-based-bsp${IMAGE_NAME_POSTFIX}.img
 
