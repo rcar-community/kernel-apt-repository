@@ -78,8 +78,13 @@ jobs:
       - name: Build debian image
         run: |
           ./build_image/build_with_docker_sparrow-hawk.sh 13
-          ./build_image/build_with_docker_sparrow-hawk.sh 13 --lxqt
-          ./build_image/build_with_docker_sparrow-hawk.sh 13 --gnome
+          ./build_image/build_with_docker_sparrow-hawk.sh 13 --desktop gnome
+          ./build_image/build_with_docker_sparrow-hawk.sh 13 --desktop xfce
+          ./build_image/build_with_docker_sparrow-hawk.sh 13 --desktop kde
+          ./build_image/build_with_docker_sparrow-hawk.sh 13 --desktop cinnamon
+          ./build_image/build_with_docker_sparrow-hawk.sh 13 --desktop gnome-flashback
+          ./build_image/build_with_docker_sparrow-hawk.sh 13 --desktop mate
+          ./build_image/build_with_docker_sparrow-hawk.sh 13 --desktop lxqt
 
       - name: Generate release message
         run: |
