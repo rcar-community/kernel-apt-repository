@@ -112,10 +112,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
+          cd $GITHUB_WORKSPACE
           BRANCH="${{ github.ref_name }}"
           if [[ "$BRANCH" == "main" ]]; then
             # ex.) vYYYY-MM-DD
-            echo "TAG_NAME=v$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+            RELEASE_VER=$(grep download download_deb_package_from_release.sh | sed 's/.*download\///' | xargs dirname)
+            if [[ -z "$RELEASE_VER" ]]; then
+              echo "TAG_NAME=v$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+            else
+              echo "TAG_NAME=${RELEASE_VER}" >> $GITHUB_ENV
+            fi
           elif [[ "$BRANCH" == "dev" ]]; then
             echo "TAG_NAME=dev-latest" >> $GITHUB_ENV
           elif [[ "$BRANCH" == "next" ]]; then
