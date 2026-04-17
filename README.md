@@ -1,6 +1,20 @@
 # kernel-apt-repository
 apt repository for debian based distribution
 
+## Contribution
+
+### Question/Issue report
+
+Please post in github discussion.
+
+https://github.com/orgs/rcar-community/discussions/categories/q-a
+
+### Suggestion with code
+
+Please use Pull request feature.
+
+https://github.com/rcar-community/kernel-apt-repository/pulls
+
 ## Repository Structure
 
 - main branch: For build apt-repository and debian based image.
