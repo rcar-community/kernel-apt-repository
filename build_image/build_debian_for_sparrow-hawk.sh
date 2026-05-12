@@ -130,7 +130,6 @@ mmdebstrap --variant=$VARIANT --arch=$ARCH \
     --customize-hook="echo 127.0.1.1 ${HOSTNAME} >> ${CHROOT_DIR}/etc/hosts" \
     --customize-hook="echo '#!/bin/sh' > ${CHROOT_DIR}/etc/rc.local" \
     --customize-hook="echo '/sbin/insmod /lib/modules/\$(uname -r)/kernel/drivers/pci/controller/dwc/pcie-rcar-gen4.ko & ' >> ${CHROOT_DIR}/etc/rc.local" \
-    --customize-hook="echo 'exit 0' >> ${CHROOT_DIR}/etc/rc.local" \
     --customize-hook="chroot ${CHROOT_DIR} chmod +x /etc/rc.local" \
     --customize-hook="chroot ${CHROOT_DIR} addgroup gpio" \
     --customize-hook="chroot ${CHROOT_DIR} useradd -m -s /bin/bash -G sudo,audio,video,i2c,gpio,dialout ${USERNAME}" \
@@ -175,6 +174,10 @@ cd ${SCRIPT_DIR}
 wget ${YOCTO_BSP_RAW_GITHUB_URL}/recipes-utils/expand-rootfs/files/expand-rootfs.sh \
     -O ${CHROOT_DIR}/usr/bin/expand-rootfs.sh
 chmod +x ${CHROOT_DIR}/usr/bin/expand-rootfs.sh
+cat << 'EOS' >> ${CHROOT_DIR}/etc/rc.local
+# Expand rootfs at first booting
+bash /usr/bin/expand-rootfs.sh
+EOS
 ## Install example-apps from meta-sparrow-hawk
 mkdir -p ${SCRIPT_DIR}/example-apps && cd ${SCRIPT_DIR}/example-apps
 wget ${YOCTO_BSP_RAW_GITHUB_URL}/recipes-examples/example-apps/files/toggle_gpio_GP2_12.py
