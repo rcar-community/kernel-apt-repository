@@ -1,0 +1,20 @@
+Origin: Debian
+Label: Debian
+Suite: stable
+Codename: kernel
+Date: Tue, 12 May 2026 09:30:37 UTC
+Architectures: arm64
+Components: main
+Description: Kernel package apt repository for sparrow-hawk
+MD5Sum:
+ 7021da3257634eb91611ff65e61dbba3 12382 main/binary-arm64/Packages
+ f5991bb2837c82944ba2a973047c71ff 2935 main/binary-arm64/Packages.gz
+ 2c20742e729f6d66681e46a8a4ad1807 141 main/binary-arm64/Release
+SHA1:
+ f739143c2acea55a4230c7c341f957a718b5afff 12382 main/binary-arm64/Packages
+ 9abbd833ccd42a953b79d41623198f1c2ece7862 2935 main/binary-arm64/Packages.gz
+ 9dc69c02878de04e757eb8c5608ffda9dfae1ecf 141 main/binary-arm64/Release
+SHA256:
+ 0e1ac09789af42591daf242de289452c6b958fc76894bd8a688d05b2436b3df1 12382 main/binary-arm64/Packages
+ 768543793763ae184e151d3f985b7098523e7e9d6c9e46a1a5d45fb8eb3768e9 2935 main/binary-arm64/Packages.gz
+ bec6aee8fd6b589bbdf35301132b5a4f672ca7470de9e6f323c2422d4bf4e7ca 141 main/binary-arm64/Release
